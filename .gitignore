@@ -1,0 +1,5 @@
+SecretToken.py
+users.db
+venv/
+__pycache__/
+.idea/
