@@ -1,11 +1,11 @@
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
-from Logger import Logger
-from Database import BotDatabase
+from logger import Logger
+from database import BotDatabase
 from Schedule import Schedule
 from SecretToken import TOKEN
-import Locale
+import locale
 
 
 class ScheduleBot:
@@ -37,7 +37,7 @@ class ScheduleBot:
         context.bot.send_message(chat_id=update.message.chat_id, text=text)
 
     def on_start_cmd(self, update, context):
-        self._send_message(update, context, Locale.TEXT_START_CMD)
+        self._send_message(update, context, locale.TEXT_START_CMD)
 
     def on_text(self, update, context):
         chat_text = update.message.text
@@ -49,20 +49,20 @@ class ScheduleBot:
             # Set given group
             self._database.set_group(update.message.chat_id, chat_text)
 
-            response = Locale.TEXT_GROUP_SET.format(chat_text)
+            response = locale.TEXT_GROUP_SET.format(chat_text)
             self._send_message(update, context, response)
 
     def on_print_cmd(self, update, context):
         res = self._database.get_group(update.message.chat_id)
         if res is None:
-            self._send_message(update, context, Locale.TEXT_NO_GROUP_SET)
+            self._send_message(update, context, locale.TEXT_NO_GROUP_SET)
         else:
             response = self._schedule.get_schedule_weekly(res)
             self._send_message(update, context, response)
 
     def on_clear_cmd(self, update, context):
         self._database.del_group(update.message.chat_id)
-        self._send_message(update, context, Locale.TEXT_GROUP_CLEANED)
+        self._send_message(update, context, locale.TEXT_GROUP_CLEANED)
 
     def run(self):
         self._updater.start_polling()
