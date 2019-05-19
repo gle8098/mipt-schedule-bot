@@ -35,7 +35,7 @@ class BotDatabase:
             session.commit()
 
     def set_group(self, chat_id, group):
-        self.del_group(chat_id) # Delete record if it exists
+        self.del_group(chat_id)  # Delete record if it exists
 
         Session = sessionmaker(bind=self._engine)
         session = Session()
