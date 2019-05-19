@@ -12,7 +12,7 @@ class Schedule:
         table = table[group]
         result = locale.TEXT_SCHEDULE_HEAD.format(group)
         for row in table:
-            result += '[' + locale.DAYS_OF_WEEK[row['day']] + '] ' + row['type'] + ' ' + row['name'] + '\n'
+            result += '[{}] {} {}\n'.format(locale.DAYS_OF_WEEK[row['day']], row['type'], row['name'])
 
         return result
 

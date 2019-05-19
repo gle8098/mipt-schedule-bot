@@ -3,7 +3,7 @@ from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 from logger import Logger
 from database import BotDatabase
-from Schedule import Schedule
+from schedule import Schedule
 from SecretToken import TOKEN
 import locale
 

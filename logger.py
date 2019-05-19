@@ -10,5 +10,5 @@ class Logger:
 
     @staticmethod
     def error(text, exception):
-        Logger._logger.warning('Exception occured: %s\n', text)
-        Logger._logger.warning('%s\n', exception)
+        Logger._logger.warning('Exception occured: %s', text)
+        Logger._logger.warning('%s', exception)
